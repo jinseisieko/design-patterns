@@ -1,0 +1,43 @@
+site_name: C++ Design Patterns Documentation
+site_description: Comprehensive documentation for 23 Essential C++ Design Patterns
+theme:
+  name: material
+  palette:
+    primary: indigo
+    accent: indigo
+
+nav:
+  - Home: index.md
+  - Patterns:
+    - Creational (5):
+      - Abstract Factory: patterns/creational/abstract_factory.md
+      - Singleton: patterns/creational/singleton.md
+      - Factory Method: patterns/creational/factory_method.md
+      - Builder: patterns/creational/builder.md
+      - Prototype: patterns/creational/prototype.md
+    - Structural (7):
+      - Adapter: patterns/structural/adapter.md
+      - Bridge: patterns/structural/bridge.md
+      - Composite: patterns/structural/composite.md
+      - Decorator: patterns/structural/decorator.md
+      - Facade: patterns/structural/facade.md
+      - Flyweight: patterns/structural/flyweight.md
+      - Proxy: patterns/structural/proxy.md
+    - Behavioral (11):
+      - Chain of Responsibility: patterns/behavioral/chain_of_responsibility.md
+      - Command: patterns/behavioral/command.md
+      - Interpreter: patterns/behavioral/interpreter.md
+      - Iterator: patterns/behavioral/iterator.md
+      - Mediator: patterns/behavioral/mediator.md
+      - Strategy: patterns/behavioral/strategy.md
+      - Visitor: patterns/behavioral/visitor.md
+      - Observer: patterns/behavioral/observer.md
+      - State: patterns/behavioral/state.md
+      - Memento: patterns/behavioral/memento.md
+      - Template Method: patterns/behavioral/template_method.md
+  - Contributing Guide: contributing.md
+
+markdown_extensions:
+  - pymdownx.highlight
+  - pymdownx.superfences
+  - pymdownx.inlinehilite

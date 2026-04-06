@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block title %}{{ pattern.name }} Pattern - C++ Design Patterns{% endblock %}
+
+{% block content %}
+<div class="card">
+    <span class="badge badge-{{ pattern.category|lower }}">{{ pattern.category }}</span>
+    <h2>{{ pattern.name }} Pattern</h2>
+    <p>{{ pattern.description }}</p>
+</div>
+
+<div class="card">
+    <h3>Intent</h3>
+    <p>{{ output.intent }}</p>
+</div>
+
+<div class="card">
+    <h3>Real-World Context</h3>
+    <p>{{ output.context }}</p>
+</div>
+
+<div class="card">
+    <h3>UML Structure</h3>
+    <pre><code class="language-text">{{ output.uml_diagram }}</code></pre>
+</div>
+
+<div class="card">
+    <h3>Before vs After</h3>
+    <div class="comparison">
+        <div class="before">
+            <h4>❌ Before (No Pattern)</h4>
+            <pre><code class="language-cpp">{{ output.before_code }}</code></pre>
+        </div>
+        <div class="after">
+            <h4>✅ After (With Pattern)</h4>
+            <pre><code class="language-cpp">{{ output.after_code }}</code></pre>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <h3>C++ Implementation</h3>
+    <pre><code class="language-cpp">{{ output.cpp_code }}</code></pre>
+</div>
+
+<div class="card">
+    <h3>Pros and Cons</h3>
+    <div class="comparison">
+        <div class="after">
+            <h4>✅ Pros</h4>
+            <ul>
+                {% for pro in output.pros %}
+                <li>{{ pro }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="before">
+            <h4>❌ Cons</h4>
+            <ul>
+                {% for con in output.cons %}
+                <li>{{ con }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="warning">
+    <strong>⚠️ Anti-Pattern Warning:</strong><br>
+    {{ output.anti_pattern }}
+</div>
+
+<script>
+    // Re-run Prism highlighting after page load
+    if (window.Prism) {
+        Prism.highlightAll();
+    }
+</script>
+
+{% endblock %}

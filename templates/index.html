@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}C++ Design Patterns - 23 Essential Patterns{% endblock %}
+
+{% block content %}
+<h2>23 Essential C++ Design Patterns</h2>
+<p class="card">
+    Interactive examples of all GoF design patterns with complete C++ implementations 
+    grounded in real-world contexts: game engines, high-performance networking, and UI frameworks.
+    Each pattern includes full source code, UML diagrams, before/after comparisons, and anti-pattern warnings.
+</p>
+
+<h3>Available Patterns</h3>
+
+{% set categories = {} %}
+{% for path, pattern in patterns.items() %}
+    {% if pattern.category not in categories %}
+        {% set _ = categories.update({pattern.category: []}) %}
+    {% endif %}
+    {% set _ = categories[pattern.category].append((path, pattern)) %}
+{% endfor %}
+
+{% for category in ["Creational", "Structural", "Behavioral"] %}
+    {% if category in categories %}
+    <div class="card">
+        <h3>{{ category }} Patterns</h3>
+        <ul>
+            {% for path, pattern in categories[category] %}
+            <li>
+                <strong>{{ pattern.name }}</strong>: {{ pattern.description }}
+                <br>
+                <a href="{{ url_for('pattern_' ~ path.replace('/', '_')) }}">View Demo →</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+{% endfor %}
+
+{% endblock %}
