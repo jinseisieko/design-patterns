@@ -74,6 +74,31 @@ flask --app app run --debug
 
 Visit `http://localhost:5000` in your browser.
 
+### Docker Deployment
+
+**Build and run with Docker Compose:**
+
+```bash
+docker compose up -d --build
+```
+
+**Build and run with Docker only:**
+
+```bash
+docker build -t design-patterns-app .
+docker run -d -p 5000:5000 --name design-patterns design-patterns-app
+```
+
+The application will be available at `http://localhost:5000`.
+
+**Stop the container:**
+
+```bash
+docker compose down
+# or
+docker stop design-patterns && docker rm design-patterns
+```
+
 ### Running Tests
 
 ```bash
