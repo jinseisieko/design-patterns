@@ -213,7 +213,7 @@ The `main` branch is protected:
 ## 📞 Getting Help
 
 - Open an issue for bugs or feature requests
-- Start a [Discussion](https://github.com/your-username/design-patterns/discussions) for questions
+- Start a [Discussion](https://github.com/jinseisieko/design-patterns/discussions) for questions
 - Check existing issues and PRs before creating new ones
 
 Thank you for contributing! 🎉
