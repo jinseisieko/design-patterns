@@ -94,7 +94,7 @@ instance/
 .pre-commit-hooks.yaml
 
 # MkDocs build output
-docs/site/
+site/
 
 # Local configuration overrides
 config.local.py

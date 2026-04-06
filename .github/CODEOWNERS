@@ -1,21 +1,20 @@
 # CODEOWNERS - Defines default reviewers for pull requests
-# Replace @your-username with the actual GitHub username(s)
 
 # Default reviewers for all changes
-* @your-username
+* @jinseisieko
 
 # Pattern-specific reviewers
-patterns/creational/ @your-username
-patterns/structural/ @your-username
-patterns/behavioral/ @your-username
+patterns/creational/ @jinseisieko
+patterns/structural/ @jinseisieko
+patterns/behavioral/ @jinseisieko
 
 # Core application reviewers
-app/ @your-username
-templates/ @your-username
-tests/ @your-username
+app/ @jinseisieko
+templates/ @jinseisieko
+tests/ @jinseisieko
 
 # Documentation reviewers
-docs/ @your-username
+docs/ @jinseisieko
 
 # CI/CD reviewers
-.github/workflows/ @your-username
+.github/workflows/ @jinseisieko

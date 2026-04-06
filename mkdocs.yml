@@ -1,5 +1,8 @@
 site_name: C++ Design Patterns Documentation
 site_description: Comprehensive documentation for 23 Essential C++ Design Patterns
+docs_dir: docs
+site_dir: site
+
 theme:
   name: material
   palette:

@@ -4,7 +4,7 @@ Welcome to the comprehensive documentation for the Design Patterns Demo Applicat
 
 ## Overview
 
-This application teaches software design patterns through realistic, non-toy implementations within a modern Python/Flask web development context. Each pattern is demonstrated in a tangible web development scenario, bridging the gap between theoretical knowledge and practical application.
+This application demonstrates all 23 Gang of Four design patterns through realistic C++ implementations, served via a Python/Flask web application. Each pattern is demonstrated in a tangible scenario—game engines, networking, UI frameworks—bridging the gap between theoretical knowledge and practical application.
 
 ## Getting Started
 

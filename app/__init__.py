@@ -4,7 +4,6 @@ import os
 
 from flask import Flask
 
-from app.extensions import db
 from config import config
 
 from patterns import register_patterns
@@ -30,17 +29,10 @@ def create_app(config_name=None):
     app = Flask(__name__, template_folder=template_dir)
     app.config.from_object(config[config_name])
 
-    # Initialize extensions
-    db.init_app(app)
-
     # Register blueprints
     app.register_blueprint(main_bp)
 
     # Register pattern routes
     register_patterns(app)
-
-    # Create database tables
-    with app.app_context():
-        db.create_all()
 
     return app
