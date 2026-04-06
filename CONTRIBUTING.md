@@ -1,144 +1,219 @@
-# Contributing to Design Patterns Demo
+# Contributing to 23 Essential C++ Design Patterns
 
-Thank you for your interest in contributing to this educational project! This document provides guidelines and instructions for contributing.
+Thank you for your interest in contributing! This guide covers everything you need to know to contribute effectively.
 
-## 🎯 Code of Conduct
+## 🚀 Quick Start for Contributors
 
-By participating in this project, you agree to abide by our [Code of Conduct](CODE_OF_CONDUCT.md).
-
-## 🚀 Getting Started
-
-### Development Environment Setup
-
-1. Fork and clone the repository
-2. Create a virtual environment:
-   ```bash
-   python -m venv venv
-   source venv/bin/activate
-   ```
-3. Install development dependencies:
-   ```bash
-   pip install -r requirements-dev.txt
-   ```
-4. Install pre-commit hooks:
-   ```bash
-   pre-commit install
-   ```
-
-### Running the Application
+### 1. Fork and Clone
 
 ```bash
-flask --app app run --debug
+# Fork the repository on GitHub, then clone your fork
+git clone https://github.com/YOUR_USERNAME/design-patterns.git
+cd design-patterns
+
+# Add the upstream remote to stay synced
+git remote add upstream https://github.com/ORIGINAL_OWNER/design-patterns.git
 ```
 
-### Running Tests
+### 2. Set Up Development Environment
 
 ```bash
-pytest --cov=patterns --cov=app
+# Create virtual environment
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+
+# Install dependencies
+make install
+
+# Run tests to verify setup
+make test
 ```
 
-## 📝 Adding a New Design Pattern
+### 3. Create a Branch
 
-We welcome contributions that add new design patterns to the application. Follow these steps:
+```bash
+# Always branch from the latest main
+git fetch upstream
+git checkout main
+git merge upstream/main
 
-### 1. Create the Pattern Module
+# Create your feature branch
+git checkout -b feature/your-feature-name
+# or
+git checkout -b bugfix/issue-123-description
+```
 
-Create a new Python file in the appropriate category directory:
-- `patterns/creational/` for creational patterns
-- `patterns/structural/` for structural patterns
-- `patterns/behavioral/` for behavioral patterns
+## 📐 Branch Naming Convention
 
-### 2. Implement the `demonstrate()` Function
+| Prefix | Purpose | Example |
+|--------|---------|---------|
+| `feature/` | New features or patterns | `feature/add-visitor-pattern` |
+| `bugfix/` | Bug fixes | `bugfix/singleton-thread-safety` |
+| `docs/` | Documentation changes | `docs/update-facade-examples` |
+| `refactor/` | Code refactoring | `refactor/extract-pattern-registry` |
+| `test/` | Test additions or fixes | `test/add-command-pattern-tests` |
+| `chore/` | Maintenance tasks | `chore/update-dependencies` |
 
-Every pattern module must expose a `demonstrate()` function that returns a dictionary with demonstration data:
+## ✍️ Commit Message Convention
+
+We follow [Conventional Commits](https://www.conventionalcommits.org/):
+
+```
+<type>(<scope>): <description>
+
+[optional body]
+
+[optional footer]
+```
+
+**Types:**
+- `feat` - New feature
+- `fix` - Bug fix
+- `docs` - Documentation
+- `style` - Code style changes (formatting)
+- `refactor` - Code refactoring
+- `test` - Test changes
+- `chore` - Build process or auxiliary tool changes
+
+**Examples:**
+```
+feat(patterns): add Visitor pattern with AST example
+fix(singleton): resolve thread-safety issue in logger
+docs(readme): update installation instructions
+test(observer): add unit tests for detach method
+```
+
+## 🔍 Code Style
+
+We use automated tools. Run before committing:
+
+```bash
+make format   # Auto-format with black
+make lint     # Check with ruff
+make check    # Run both checks
+```
+
+Pre-commit hooks run these automatically on `git commit`.
+
+## 🧪 Testing
+
+```bash
+make test     # Run all tests with coverage
+pytest -v     # Verbose output
+pytest -k singleton  # Run specific tests
+```
+
+All new pattern modules must include a `demonstrate()` function that returns a dictionary with:
+- `cpp_code` - Full C++ implementation
+- `before_code` - Code without the pattern
+- `after_code` - Code with the pattern
+- `intent` - Pattern description
+- `context` - Real-world application
+- `pros` / `cons` - Lists of advantages/disadvantages
+- `anti_pattern` - Warning about misuse
+- `uml_diagram` - Text-based class diagram
+
+## 📝 Adding a New Pattern
+
+### Step 1: Create the Module
+
+```
+patterns/
+├── creational/
+│   └── your_pattern.py    # New pattern
+```
+
+### Step 2: Implement `demonstrate()`
 
 ```python
 def demonstrate() -> dict:
-    """Execute the pattern demonstration.
-    
-    Returns:
-        Dictionary containing:
-        - output data for the template
-        - anti_pattern warning message
-    """
+    """Execute the pattern demonstration."""
     return {
-        "key": "value",
-        "anti_pattern": "Warning message about misuse",
+        "cpp_code": "Full C++ code here",
+        "before_code": "Code without pattern",
+        "after_code": "Code with pattern",
+        "intent": "...",
+        "context": "...",
+        "pros": [...],
+        "cons": [...],
+        "anti_pattern": "...",
+        "uml_diagram": "...",
     }
 ```
 
-### 3. Register the Pattern
+### Step 3: Register the Pattern
 
-Add your pattern to the registry in `patterns/__init__.py`:
+Edit `patterns/__init__.py`:
 
 ```python
 from patterns.creational.your_pattern import demonstrate as your_pattern_demo
 
-_pattern_registry = {
-    # ... existing patterns
-    "creational/your_pattern": {
-        "category": "Creational",
-        "name": "Your Pattern",
-        "description": "Brief description",
-        "demo_func": your_pattern_demo,
-    },
+_pattern_registry["creational/your_pattern"] = {
+    "category": "Creational",
+    "name": "Your Pattern",
+    "description": "...",
+    "demo_func": your_pattern_demo,
 }
 ```
 
-### 4. Write Tests
+### Step 4: Add Tests
 
-Create tests in `tests/test_patterns/test_your_pattern.py`:
-
-```python
-from patterns.creational.your_pattern import demonstrate
-
-
-def test_demonstrate_returns_dict():
-    output = demonstrate()
-    assert isinstance(output, dict)
-
-
-def test_demonstrate_has_anti_pattern_warning():
-    output = demonstrate()
-    assert "anti_pattern" in output
+```
+tests/test_patterns/
+└── test_your_pattern.py
 ```
 
-### 5. Update Templates
+### Step 5: Add Documentation
 
-If needed, add rendering logic for your pattern's output in `templates/pattern_detail.html`.
+```
+docs/patterns/creational/
+└── your_pattern.md
+```
 
-### 6. Document the Pattern
+## 📤 Submitting a Pull Request
 
-Create a Markdown file in `docs/patterns/<category>/your_pattern.md` with:
-- Pattern intent
-- UML diagram (text-based)
-- Before/After code comparison
-- Pros and cons
-- Real-world use cases
+1. Push your branch: `git push origin feature/your-feature-name`
+2. Open a PR on GitHub
+3. Fill out the PR template
+4. Wait for CI checks to pass
+5. Address review feedback
+6. PR will be squash-merged into `main`
 
-## 🔧 Code Style
+### PR Checklist
 
-We use automated tools to maintain code quality:
+- [ ] Branch is up to date with `main`
+- [ ] All tests pass (`make test`)
+- [ ] Linting passes (`make lint`)
+- [ ] Code is formatted (`make format`)
+- [ ] New patterns have tests
+- [ ] Documentation is updated
 
-- **Ruff**: Static analysis for errors and style violations
-- **Black**: Opinionated code formatter
+## 🏷️ Issue Labels
 
-These run automatically via pre-commit hooks. Ensure they pass before submitting PRs.
+| Label | Purpose |
+|-------|---------|
+| 🐛 `bug` | Something isn't working |
+| 💡 `enhancement` | New feature or improvement |
+| 📚 `documentation` | Docs improvements |
+| 🌟 `good first issue` | Good for newcomers |
+| 🆘 `help wanted` | Extra attention needed |
+| 🧪 `testing` | Test-related |
+| 🔧 `ci-cd` | CI/CD pipeline |
 
-## 📤 Submitting Changes
+## 🔒 Branch Protection
 
-1. Create a feature branch: `git checkout -b feature/pattern-name`
-2. Make your changes
-3. Run tests: `pytest`
-4. Commit with a descriptive message following [Conventional Commits](https://www.conventionalcommits.org/)
-5. Push to your fork and submit a Pull Request
+The `main` branch is protected:
+- Direct pushes are blocked
+- All changes require a PR
+- PRs require at least 1 approval
+- All CI checks must pass
+- Branch must be up to date before merging
+- PRs are squash-merged
 
-### Pull Request Template
+## 📞 Getting Help
 
-Please fill out the PR template provided in `.github/PULL_REQUEST_TEMPLATE.md`.
-
-## ❓ Questions?
-
-Feel free to open an issue for any questions or clarifications about contributing.
+- Open an issue for bugs or feature requests
+- Start a [Discussion](https://github.com/your-username/design-patterns/discussions) for questions
+- Check existing issues and PRs before creating new ones
 
 Thank you for contributing! 🎉
