@@ -1,8 +1,8 @@
 blank_issues_enabled: false
 contact_links:
   - name: 📚 Documentation
-    url: https://github.com/your-username/design-patterns#readme
+    url: https://github.com/jinseisieko/design-patterns#readme
     about: Check the README and documentation before opening an issue.
   - name: 💬 Discussions
-    url: https://github.com/your-username/design-patterns/discussions
+    url: https://github.com/jinseisieko/design-patterns/discussions
     about: Ask questions or start a discussion here.
