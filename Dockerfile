@@ -2,8 +2,9 @@ FROM python:3.12-slim AS builder
 
 WORKDIR /build
 
-# Install build dependencies
-RUN apt-get update && \
+# 🇷🇺 Switch to Yandex mirror for faster/reliable access in Russia
+RUN sed -i 's|http://deb.debian.org/debian|http://mirror.yandex.ru/debian|g' /etc/apt/sources.list.d/debian.sources && \
+    apt-get update -o Acquire::http::Timeout=30 -o Acquire::https::Timeout=30 && \
     apt-get install -y --no-install-recommends gcc && \
     rm -rf /var/lib/apt/lists/*
 
@@ -11,6 +12,7 @@ RUN apt-get update && \
 COPY requirements.txt requirements-dev.txt ./
 RUN pip install --no-cache-dir --prefix=/install -r requirements-dev.txt
 
+# ... rest of your Dockerfile unchanged ...
 FROM python:3.12-slim
 
 LABEL maintainer="jinseisieko"
