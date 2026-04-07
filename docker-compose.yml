@@ -5,13 +5,13 @@ services:
       dockerfile: Dockerfile
     container_name: design-patterns-app
     ports:
-      - "5000:5000"
+      - "42088:42088"
     environment:
       - FLASK_ENV=production
       - SECRET_KEY=${SECRET_KEY:-change-this-in-production}
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:5000/')"]
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:42088/')"]
       interval: 30s
       timeout: 3s
       retries: 3

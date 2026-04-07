@@ -31,14 +31,14 @@ RUN groupadd -r appuser && useradd -r -g appuser -d /app -s /sbin/nologin appuse
     chown -R appuser:appuser /app
 
 # Expose port
-EXPOSE 5000
+EXPOSE 42088
 
 # Health check
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
-    CMD python -c "import urllib.request; urllib.request.urlopen('http://localhost:5000/')" || exit 1
+    CMD python -c "import urllib.request; urllib.request.urlopen('http://localhost:42088/')" || exit 1
 
 # Run as non-root user
 USER appuser
 
 # Production command
-CMD ["gunicorn", "--bind", "0.0.0.0:5000", "--workers", "4", "--threads", "2", "app:create_app()"]
+CMD ["gunicorn", "--bind", "0.0.0.0:42088", "--workers", "4", "--threads", "2", "app:create_app()"]

@@ -72,7 +72,7 @@ pre-commit install
 flask --app app run --debug
 ```
 
-Visit `http://localhost:5000` in your browser.
+Visit `http://localhost:42088` in your browser.
 
 ### Docker Deployment
 
@@ -86,10 +86,10 @@ docker compose up -d --build
 
 ```bash
 docker build -t design-patterns-app .
-docker run -d -p 5000:5000 --name design-patterns design-patterns-app
+docker run -d -p 42088:42088 --name design-patterns design-patterns-app
 ```
 
-The application will be available at `http://localhost:5000`.
+The application will be available at `http://localhost:42088`.
 
 **Stop the container:**
 
